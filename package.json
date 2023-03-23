@@ -1,0 +1,12 @@
+{
+	"name": "com.illumatestudios",
+	"version": "0.1.0",
+	"displayName": "Illumate Tools",
+	"description": "Useful classes, extension methods etc.",
+	"unity": "2021.3",
+	"author":{
+		"name": "Illumate Studios",
+		"email": "hi@illumatestudios.com",
+		"url": "https://illumatestudios.com/"
+	}
+}
