@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public static class EnumerableExtensions
 {
     /// <summary>
@@ -14,7 +10,7 @@ public static class EnumerableExtensions
         T temp;
         for (int i = 0; i < array.Length; i++)
         {
-            int rnd = Random.Range(0, array.Length);
+            int rnd = UnityEngine.Random.Range(0, array.Length);
             temp = array[rnd];
             array[rnd] = array[i];
             array[i] = temp;

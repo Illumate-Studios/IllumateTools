@@ -4,10 +4,12 @@
 
 Custom data Structures.
 
+- InterfaceReference
+- WaitForFrames
 - MonoSingleton: Singleton structure for unity
 - PosRot: Struct that holding position and rotation Data
 
-## Editor Helpers
+## Helpers
 
 Components that helps for editor jobs
 
@@ -30,12 +32,8 @@ Frequently used shaders
 
 ## Tools 
 
-- AudioPool:
-- BehaviourSingleton:
-- Coroutiner:
+- FrameJobs: Special monobehaviour life cycle methods like LazyUpdate..
+- AudioPool: Play an audio clip one time
 - Dbg: Shortcut for UnityEngine.Debug and some useful debug functions
-- Delayer: Delayed actions and LazyUpdate
-	- LazyUpdate: Update that executed less frequently (every few frames or seconds)
-- ResourceHolder:
-- TimedAction: 
-- Tween: 
+- Delayer: Delayed actions
+- TimedAction: Time based actions that has OnStart, OnUpdate and OnEnd methods

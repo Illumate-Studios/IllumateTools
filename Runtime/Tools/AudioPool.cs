@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace IllumateStudios.Tools
@@ -12,7 +10,7 @@ namespace IllumateStudios.Tools
             get
             {
                 if (_audioSource == null)
-                    _audioSource = BehaviourWorker.monoObject.AddComponent<AudioSource>();
+                    _audioSource = ExistingObject.monoObject.AddComponent<AudioSource>();
                 return _audioSource;
             }
         }

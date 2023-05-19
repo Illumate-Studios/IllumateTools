@@ -1,23 +1,60 @@
-using UnityEngine;
-
-public class MonoSingleton<T> : MonoBehaviour where T: MonoSingleton<T>
+namespace UnityEngine
 {
-    private static volatile T _instance = null;
-
-    public static T Instance
+    /// <summary>
+    /// Singleton structure
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
     {
-        get
+        private static volatile T _instance = null;
+
+        public static T Instance
         {
-            if (_instance == null)
-                _instance = FindObjectOfType<T>();
-            
-            return _instance;
+            get
+            {
+                if (_instance == null)
+                    _instance = FindObjectOfType<T>();
+
+                return _instance;
+            }
+        }
+
+        private void OnDestroy()
+        {
+            if (_instance == this)
+                _instance = null;
         }
     }
 
-    private void OnDestroy()
+    /// <summary>
+    /// Singleton but creates one if not exist
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public class MonoExistSignleton<T> : MonoBehaviour where T : MonoExistSignleton<T>
     {
-        if (_instance == this)
-            _instance = null;
+        private static volatile T _instance = null;
+
+        public static T Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = FindObjectOfType<T>();
+
+                if (_instance == null)
+                {
+                    GameObject go = new GameObject(typeof(T).Name + " Singleton");
+                    _instance = go.AddComponent<T>();
+                }
+
+                return _instance;
+            }
+        }
+
+        private void OnDestroy()
+        {
+            if (_instance == this)
+                _instance = null;
+        }
     }
 }

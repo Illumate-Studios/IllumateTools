@@ -38,11 +38,11 @@ namespace IllumateStudios.Tools
         public void Invoke()
         {
             if (updateInterval != 0)
-                BehaviourWorker.RunEnumerator(TimedActionIntervalCR());
+                ExistingObject.RunEnumerator(TimedActionIntervalCR());
             else if (onUpdate == null)
-                BehaviourWorker.RunEnumerator(TimedActionNoUpdateCR());
+                ExistingObject.RunEnumerator(TimedActionNoUpdateCR());
             else
-                BehaviourWorker.RunEnumerator(TimedActionCR());
+                ExistingObject.RunEnumerator(TimedActionCR());
         }
 
         private IEnumerator TimedActionCR()

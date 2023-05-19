@@ -1,12 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace IllumateStudios.Tools
 {
-    public class ResourceHolder : ScriptableObject
-    {
+    //public class ResourceHolder : ScriptableObject
+    //{
         //[Serializable]
         //public class ResourceDict : SerializableDictionary<string, UnityEngine.Object> { }
         //[SerializeField] public ResourceDict resourceDictionary;
@@ -22,5 +19,5 @@ namespace IllumateStudios.Tools
 
         //    return (T) instance.resourceDictionary[key];
         //}
-    }
+    //}
 }

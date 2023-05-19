@@ -12,9 +12,9 @@ namespace IllumateStudios.Tools
         /// </summary>
         /// <param name="time"></param>
         /// <param name="action"></param>
-        public static void Delay(float time, Action action)
+        public static void DelayTime(float time, Action action)
         {
-            BehaviourWorker.RunEnumerator(DelayCR(time, action));
+            ExistingObject.RunEnumerator(DelayCR(time, action));
         }
 
         /// <summary>
@@ -22,34 +22,10 @@ namespace IllumateStudios.Tools
         /// </summary>
         /// <param name="action"></param>
         /// <param name="count"></param>
-        public static void DoAfterFrame(Action action, int count = 1)
+        public static void DelayFrame(Action action, int count = 1)
         {
-            BehaviourWorker.RunEnumerator(DoAfterFrameCR(action, count));
-        }
-
-        /// <summary>
-        /// Run function once every {frameGap} frame
-        /// </summary>
-        /// <param name="function"></param>
-        /// <param name="monoBehaviour"></param>
-        /// <param name="frameGap"></param>
-        public static void SetLazyUpdate(Action function, MonoBehaviour monoBehaviour, int frameGap = 10)
-        {
-            monoBehaviour.StartCoroutine(LazyUpdaterCR(function, frameGap));
-        }
-
-        /// <summary>
-        /// Run function once every {seconds} second
-        /// </summary>
-        /// <param name="function"></param>
-        /// <param name="monoBehaviour"></param>
-        /// <param name="seconds"></param>
-        public static void SetLazyUpdate(Action function, MonoBehaviour monoBehaviour, float seconds = 1)
-        {
-            monoBehaviour.StartCoroutine(LazyTimeUpdaterCR(function, seconds));
-        }
-
-        
+            ExistingObject.RunEnumerator(DoAfterFrameCR(action, count));
+        }        
 
         // ---------------------- Coroutines ----------------------
 
@@ -67,28 +43,5 @@ namespace IllumateStudios.Tools
 
             action.Invoke();
         }
-
-        private static IEnumerator LazyUpdaterCR(Action updateFunction, int frameGap)
-        {
-            while (true)
-            {
-                updateFunction.Invoke();
-                for (int i = 0; i < frameGap; i++)
-                {
-                    yield return null;
-                }
-            }
-        }
-
-        private static IEnumerator LazyTimeUpdaterCR(Action updateFunction, float seconds)
-        {
-            while (true)
-            {
-                updateFunction.Invoke();
-                yield return new WaitForSeconds(seconds);
-            }
-        }
     }
-
-
 }
