@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace IllumateStudios.Tools
 {
-    public class LazyStart : FrameJobComponent<LazyStart>
+    public class LazyStarter : FrameJobComponent<LazyStarter>
     {
         private Queue<MonoBehaviour> lazyStarts = new Queue<MonoBehaviour>();
 

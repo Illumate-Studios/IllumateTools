@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace IllumateStudios.Tools
 {
-    public class LazyUpdate : FrameJobComponent<LazyUpdate>
+    public class LazyUpdater : FrameJobComponent<LazyUpdater>
     {
         private Dictionary<MonoBehaviour, int> lazyUpdates = new Dictionary<MonoBehaviour, int>();
         private List<MonoBehaviour> keysToRemove = new List<MonoBehaviour>();

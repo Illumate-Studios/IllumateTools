@@ -8,6 +8,15 @@ namespace IllumateStudios.Tools
     public static class Delayer
     {
         /// <summary>
+        /// Run action after WaitForEndOfFrame
+        /// </summary>
+        /// <param name="action"></param>
+        public static void EndOfFrame(Action action)
+        {
+            ExistingObject.RunEnumerator(EndOfFrameCR(action));
+        }
+
+        /// <summary>
         /// Run action after a time
         /// </summary>
         /// <param name="time"></param>
@@ -41,6 +50,12 @@ namespace IllumateStudios.Tools
             for (int i = 0; i < count; i++)
                 yield return null;
 
+            action.Invoke();
+        }
+
+        public static IEnumerator EndOfFrameCR(Action action)
+        {
+            yield return new WaitForEndOfFrame();
             action.Invoke();
         }
     }
