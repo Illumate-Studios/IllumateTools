@@ -53,7 +53,7 @@ namespace IllumateStudios.Tools
             action.Invoke();
         }
 
-        public static IEnumerator EndOfFrameCR(Action action)
+        private static IEnumerator EndOfFrameCR(Action action)
         {
             yield return new WaitForEndOfFrame();
             action.Invoke();
