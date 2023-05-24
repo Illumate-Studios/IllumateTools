@@ -7,7 +7,16 @@ namespace UnityEngine
     [System.Serializable]
     public class IRef<T> : ISerializationCallbackReceiver where T : class
     {
+        /// <summary>
+        /// Serialized interface
+        /// </summary>
         public T I { get => Reference as T; }
+
+        /// <summary>
+        /// Object reference
+        /// </summary>
+        public Object Ref => Reference;
+
 
         [SerializeField] private Object Reference;
 
