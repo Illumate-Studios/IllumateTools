@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Diagnostics;
 using System.Collections.Generic;
 
 public static class DebugExtensions
@@ -16,29 +15,29 @@ public static class DebugExtensions
     //    }
     //}
 
-    [DebuggerHidden]
-    public static void Print<T>(this List<T> list)
+    [HideInCallstack]
+    public static void Print<T>(this List<T> list, string debugText = "")
     {
         if (list == null)
         {
             UnityEngine.Debug.Log("Null list: " + list);
             return;
         }
-        list.ToArray().Print();
+        list.ToArray().Print(debugText);
     }
 
 
 
-    [DebuggerHidden]
-    public static void Print<T>(this T[] array)
+    [HideInCallstack]
+    public static void Print<T>(this T[] array, string debugText = "")
     {
         if (array == null)
         {
-            UnityEngine.Debug.Log("Null array: " + array);
+            UnityEngine.Debug.Log(debugText + " Null array: " + array);
             return;
         }
 
-        string ret = "Array with length: " + array.Length + "\n";
+        string ret = debugText + " Array with length: " + array.Length + "\n";
         for (int i = 0; i < array.Length; i++)
         {
             ret += array[i] == null ? "null" : array[i].ToString();
@@ -49,7 +48,7 @@ public static class DebugExtensions
         // PERFORMANCE
     }
 
-    [DebuggerHidden]
+    [HideInCallstack]
     public static void Print<TKey, TValue>(this Dictionary<TKey, TValue> dictionary)
     {
         if (dictionary == null)
