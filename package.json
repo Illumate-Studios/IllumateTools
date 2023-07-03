@@ -1,8 +1,9 @@
 {
-	"name": "com.illumatestudios",
+	"name": "Illumate",
 	"version": "0.2.0",
 	"displayName": "Illumate Tools",
 	"description": "Useful classes, data structures, extension methods etc.",
+	"documentationUrl": "https://illumate-studios.notion.site/IllumateTools-bcb48961ae8240e6967ccba7831f8bf8",
 	"unity": "2021.3",
 	"author":{
 		"name": "Illumate Studios",
