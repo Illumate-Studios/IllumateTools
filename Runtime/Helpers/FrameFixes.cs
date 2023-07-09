@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using System.Collections;
 
-namespace IllumateStudios.Helper
+namespace Illumate.Helper
 {
     /// <summary>
     /// Testing purposes only

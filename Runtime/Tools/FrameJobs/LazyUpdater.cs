@@ -2,19 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace IllumateStudios.Tools
+namespace Illumate.Tools
 {
     public class LazyUpdater : FrameJobComponent<LazyUpdater>
     {
         private Dictionary<MonoBehaviour, int> lazyUpdates = new Dictionary<MonoBehaviour, int>();
         private List<MonoBehaviour> keysToRemove = new List<MonoBehaviour>();
-        private FrameJobs fj;
 
         private void Update()
         {
             foreach (var m in lazyUpdates)
             {
-                if (fj.framePassed % m.Value != 0 || !m.Key.isActiveAndEnabled)
+                if (framePassed % m.Value != 0 || !m.Key.isActiveAndEnabled)
                     continue;
 
                 // Check if null or destroyed

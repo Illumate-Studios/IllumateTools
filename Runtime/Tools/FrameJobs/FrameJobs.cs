@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace IllumateStudios.Tools
+namespace Illumate.Tools
 {
     /// <summary>
     /// Advanced life cycle functions for MonoBehaviour.

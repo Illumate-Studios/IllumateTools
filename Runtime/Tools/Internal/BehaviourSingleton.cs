@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace IllumateStudios.Tools
+namespace Illumate.Tools
 {
     /// <summary>
     /// Just exists in the scene. Base for some static classes, enumerators etc.

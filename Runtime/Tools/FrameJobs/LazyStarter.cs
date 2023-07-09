@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace IllumateStudios.Tools
+namespace Illumate.Tools
 {
     public class LazyStarter : FrameJobComponent<LazyStarter>
     {

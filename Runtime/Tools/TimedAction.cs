@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-namespace IllumateStudios.Tools
+namespace Illumate.Tools
 {
     public class TimedAction
     {

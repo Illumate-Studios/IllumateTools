@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace IllumateStudios.Tools
+namespace Illumate.Tools
 {
     public static class AudioPool
     {

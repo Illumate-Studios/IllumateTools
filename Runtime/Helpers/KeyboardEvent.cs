@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace IllumateStudios.Helper
+namespace Illumate.Helper
 {
     public class KeyboardEvent : MonoBehaviour
     {

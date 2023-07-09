@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace IllumateStudios.Helper
+namespace Illumate.Helper
 {
     public class FrameController : MonoBehaviour
     {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace IllumateStudios.Helper
+namespace Illumate.Helper
 {
     public class GetScreenShoot : MonoBehaviour
     {
