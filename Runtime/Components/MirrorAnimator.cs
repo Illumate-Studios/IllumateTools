@@ -129,11 +129,11 @@ public class MirrorAnimator : MonoBehaviour
 
     //    AddBones(armature, transform);
     //}
+}
 
-    private enum UpdateType
-    {
-        Update,
-        FixedUpdate,
-        OnBeforeRender
-    }
+public enum UpdateType
+{
+    Update,
+    FixedUpdate,
+    OnBeforeRender
 }
