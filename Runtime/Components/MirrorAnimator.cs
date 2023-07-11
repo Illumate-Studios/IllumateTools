@@ -2,12 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 /// <summary>
 /// Acts like target animator added. Copies rig
 /// </summary>
 public class MirrorAnimator : MonoBehaviour
 {
+    [SerializeField] private Animator oAnimator;
+    [SerializeField] private UpdateType updateType;
+
+
     /// <summary>
     /// Original bones. Bones to copy
     /// </summary>
@@ -18,9 +23,23 @@ public class MirrorAnimator : MonoBehaviour
     /// </summary>
     private Transform[] mBones;
 
+    private bool isInitted = false;
 
+    private void Start()
+    {
+        if (!isInitted && oAnimator != null)
+            SetTargetAnimator(oAnimator);
+    }
+
+    /// <summary>
+    /// Set target animator to copy rig
+    /// </summary>
+    /// <param name="oAnimator"></param>
     public void SetTargetAnimator(Animator oAnimator)
     {
+        isInitted = true;
+        this.oAnimator = oAnimator;
+
         const int HUMANOID_BONE_COUNT = 54;
         List<Transform> oBones = new List<Transform>();
         List<Transform> mBones = new List<Transform>();
@@ -43,7 +62,7 @@ public class MirrorAnimator : MonoBehaviour
         Destroy(mAnimator);
     }
 
-    private void FixedUpdate()
+    private void UpdateRig()
     {
         for (int i = 0; i < mBones.Length; i++)
         {
@@ -55,6 +74,36 @@ public class MirrorAnimator : MonoBehaviour
             mBones[i].rotation = oBones[i].rotation;
         }
     }
+
+    private void OnEnable()
+    {
+        RenderPipelineManager.beginCameraRendering += OnBeforeRender;
+    }
+    private void OnDisable()
+    {
+        RenderPipelineManager.beginCameraRendering -= OnBeforeRender;
+    }
+    private void OnBeforeRender(ScriptableRenderContext arg1, Camera arg2)
+    {
+#if UNITY_EDITOR
+        if (!Application.isPlaying)
+            return;
+#endif
+        if(updateType == UpdateType.OnBeforeRender)
+            UpdateRig();
+    }
+    private void Update()
+    {
+        if (updateType == UpdateType.Update)
+            UpdateRig();
+    }
+    private void FixedUpdate()
+    {
+        if (updateType == UpdateType.FixedUpdate)
+            UpdateRig();
+    }
+
+
 
 
     //public void SetPuppeteer(Transform armature)
@@ -79,4 +128,11 @@ public class MirrorAnimator : MonoBehaviour
 
     //    AddBones(armature, transform);
     //}
+
+    private enum UpdateType
+    {
+        Update,
+        FixedUpdate,
+        OnBeforeRender
+    }
 }
