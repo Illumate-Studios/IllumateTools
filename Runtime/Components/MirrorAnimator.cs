@@ -9,8 +9,9 @@ using UnityEngine.Rendering;
 /// </summary>
 public class MirrorAnimator : MonoBehaviour
 {
+    public UpdateType updateType;
+
     [SerializeField] private Animator oAnimator;
-    [SerializeField] private UpdateType updateType;
 
 
     /// <summary>
