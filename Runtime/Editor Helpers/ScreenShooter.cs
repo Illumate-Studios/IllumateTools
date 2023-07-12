@@ -2,7 +2,8 @@ using UnityEngine;
 
 namespace Illumate.Helper
 {
-    public class GetScreenShoot : MonoBehaviour
+    [AddComponentMenu("Illumate Helpers/Screen Shooter")]
+    public class ScreenShooter : MonoBehaviour
     {
         [SerializeField] private KeyCode ScreenshotButton = KeyCode.S;
 

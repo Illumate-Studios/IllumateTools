@@ -5,9 +5,10 @@ using System.Collections;
 namespace Illumate.Helper
 {
     /// <summary>
-    /// Testing purposes only
+    /// For checking is problems could be solved by executing different moments of frame
     /// </summary>
-    public class FrameFixes : MonoBehaviour
+    [AddComponentMenu("Illumate Helpers/Frame Testing")]
+    public class FrameTesting : MonoBehaviour
     {
         [SerializeField] private UnityEvent onEndOfFrame;
         [SerializeField] private UnityEvent onAfterFrame;

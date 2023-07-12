@@ -3,6 +3,7 @@ using UnityEngine.Events;
 
 namespace Illumate.Helper
 {
+    [AddComponentMenu("Illumate Helpers/Keyboard Event")]
     public class KeyboardEvent : MonoBehaviour
     {
         [SerializeField] private KeyCode KeyboardButton = KeyCode.S;

@@ -2,7 +2,8 @@ using UnityEngine;
 
 namespace Illumate.Helper
 {
-    public class AnimatorRigDebug : MonoBehaviour
+    [AddComponentMenu("Illumate Helpers/Animator Debugger")]
+    public class AnimatorDebugger : MonoBehaviour
     {
         [SerializeField] private Transform[] boneTransforms = new Transform[HUMANOID_BONE_COUNT];
 
@@ -10,12 +11,6 @@ namespace Illumate.Helper
 
         private const int HUMANOID_BONE_COUNT = 54;
 
-
-        private void Start()
-        {
-
-            //LazyUpdater.Init(this);
-        }
 
         [ContextMenu("Print Bones")]
         private void PrintBones()
@@ -34,6 +29,8 @@ namespace Illumate.Helper
         private void UpdateBoneList()
         {
             mAnimator = GetComponent<Animator>();
+            Debug.Assert(mAnimator != null);
+
             for (int i = 0; i < HUMANOID_BONE_COUNT; i++)
             {
                 boneTransforms[i] = mAnimator.GetBoneTransform((HumanBodyBones)i);

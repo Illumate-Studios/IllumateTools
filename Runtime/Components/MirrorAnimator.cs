@@ -25,6 +25,8 @@ public class MirrorAnimator : MonoBehaviour
     private Transform[] mBones;
 
     private bool isInitted = false;
+    private const int HUMANOID_BONE_COUNT = 54;
+
 
     private void Start()
     {
@@ -38,22 +40,33 @@ public class MirrorAnimator : MonoBehaviour
     /// <param name="oAnimator"></param>
     public void SetTargetAnimator(Animator oAnimator)
     {
-        isInitted = true;
         this.oAnimator = oAnimator;
+        SetTargetAnimator(GetAnimatorTranforms(oAnimator));
+    }
 
-        const int HUMANOID_BONE_COUNT = 54;
-        List<Transform> oBones = new List<Transform>();
-        List<Transform> mBones = new List<Transform>();
+    /// <summary>
+    /// Set target animator's bones to copy rig
+    /// </summary>
+    /// <param name="oBoneTransforms"></param>
+    public void SetTargetAnimator(Transform[] oBoneTransforms)
+    {
+        isInitted = true;
+
+        List<Transform> oBones = new List<Transform>(HUMANOID_BONE_COUNT);
+        List<Transform> mBones = new List<Transform>(HUMANOID_BONE_COUNT);
 
         Animator mAnimator = GetComponent<Animator>();
         Debug.Assert(mAnimator != null);
 
         for (int i = 0; i < HUMANOID_BONE_COUNT; i++)
         {
-            if (mAnimator.GetBoneTransform((HumanBodyBones)i) != null)
+            var mBone = mAnimator.GetBoneTransform((HumanBodyBones)i);
+            if (mBone != null)
             {
-                oBones.Add(oAnimator.GetBoneTransform((HumanBodyBones)i));
-                mBones.Add(mAnimator.GetBoneTransform((HumanBodyBones)i));
+                var oBone = oBoneTransforms[i];
+                Debug.Assert(oBone != null, "Bone " + i + " does not exists on original animator");
+                mBones.Add(mBone);
+                oBones.Add(oBone);
             }
         }
 
@@ -63,13 +76,14 @@ public class MirrorAnimator : MonoBehaviour
         Destroy(mAnimator);
     }
 
+
     private void UpdateRig()
     {
         for (int i = 0; i < mBones.Length; i++)
         {
 #if UNITY_EDITOR
-            Debug.Assert(mBones[i] != null, "Bone null: " + i);
-            Debug.Assert(oBones[i] != null, "Bone null: " + i);
+            Debug.Assert(mBones[i] != null, "My animator bone null: " + i);
+            Debug.Assert(oBones[i] != null, "Original animator bone null: " + i);
 #endif
             mBones[i].position = oBones[i].position;
             mBones[i].rotation = oBones[i].rotation;
@@ -105,6 +119,18 @@ public class MirrorAnimator : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Returns all bones of animator
+    /// </summary>
+    /// <param name="animator"></param>
+    /// <returns></returns>
+    public static Transform[] GetAnimatorTranforms(Animator animator)
+    {
+        Transform[] bones = new Transform[HUMANOID_BONE_COUNT];
+        for (int i = 0; i < HUMANOID_BONE_COUNT; i++)
+            bones[i] = animator.GetBoneTransform((HumanBodyBones)i);
+        return bones;
+    } 
 
 
     //public void SetPuppeteer(Transform armature)
