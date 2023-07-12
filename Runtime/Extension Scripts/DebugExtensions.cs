@@ -15,7 +15,9 @@ public static class DebugExtensions
     //    }
     //}
 
+#if UNITY_2021_3_24
     [HideInCallstack]
+#endif
     public static void Print<T>(this List<T> list, string debugText = "")
     {
         if (list == null)
@@ -28,7 +30,9 @@ public static class DebugExtensions
 
 
 
+#if UNITY_2021_3_24
     [HideInCallstack]
+#endif
     public static void Print<T>(this T[] array, string debugText = "")
     {
         if (array == null)
@@ -48,7 +52,9 @@ public static class DebugExtensions
         // PERFORMANCE
     }
 
+#if UNITY_2021_3_24
     [HideInCallstack]
+#endif
     public static void Print<TKey, TValue>(this Dictionary<TKey, TValue> dictionary)
     {
         if (dictionary == null)
