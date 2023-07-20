@@ -13,7 +13,7 @@ namespace Illumate.Tools
         {
             foreach (var m in lazyUpdates)
             {
-                if (framePassed % m.Value != 0 || !m.Key.isActiveAndEnabled)
+                if (framePassed % m.Value != 0)
                     continue;
 
                 // Check if null or destroyed
@@ -23,7 +23,8 @@ namespace Illumate.Tools
                     continue;
                 }
 
-                (m.Key as ILazyUpdate).LazyUpdate();
+                if (m.Key.isActiveAndEnabled)
+                    (m.Key as ILazyUpdate).LazyUpdate();
             }
 
             foreach (var key in keysToRemove)
