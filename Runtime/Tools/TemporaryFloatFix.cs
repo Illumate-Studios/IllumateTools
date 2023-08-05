@@ -10,7 +10,7 @@ namespace Illumate.Tools
         {
             s = s.Replace(',', '.');
             string beforeDot = s.Split('.')[0];
-            string afterDot = s.Split(".").Length == 2 ? s.Split(".")[1] : "";
+            string afterDot = s.Split(".").Length == 2 ? s.Split(".")[1] : "0";
             return int.Parse(beforeDot) + int.Parse(afterDot) * Mathf.Pow(10, -afterDot.Length);
         }
         public static string FloatToString(float f)
