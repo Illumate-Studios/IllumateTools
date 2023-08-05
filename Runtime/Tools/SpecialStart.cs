@@ -51,7 +51,14 @@ namespace Illumate.Tools
         {
             Debug.Assert(Instance.dict.ContainsKey(key), $"There is no {nameof(SpecialStart)} called {key}");
             Instance.dict[key].Execute();
-            Instance.dict.Remove(key);
+        }
+
+        /// <summary>
+        /// Reset all the special starts like scene reloaded
+        /// </summary>
+        public static void Reset()
+        {
+            _instance = null;
         }
 
         private class Starts
@@ -73,8 +80,7 @@ namespace Illumate.Tools
 
             public void Execute()
             {
-                //Debug.Assert(!hasInit, $"SpecialStart \"{name}\" must be executed once");
-                Debug.Log("Special start again " + name);
+                Debug.Assert(!hasInit, $"SpecialStart \"{name}\" must be executed once");
                 hasInit = true;
                 action?.Invoke();
             }
