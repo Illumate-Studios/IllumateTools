@@ -51,6 +51,7 @@ namespace Illumate.Tools
         {
             Debug.Assert(Instance.dict.ContainsKey(key), $"There is no {nameof(SpecialStart)} called {key}");
             Instance.dict[key].Execute();
+            Instance.dict.Remove(key);
         }
 
         private class Starts
@@ -72,7 +73,8 @@ namespace Illumate.Tools
 
             public void Execute()
             {
-                Debug.Assert(!hasInit, $"SpecialStart \"{name}\" must be executed once");
+                //Debug.Assert(!hasInit, $"SpecialStart \"{name}\" must be executed once");
+                Debug.Log("Special start again " + name);
                 hasInit = true;
                 action?.Invoke();
             }
