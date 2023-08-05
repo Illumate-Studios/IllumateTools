@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Illumate.Tools
 {
-    public static class Converter
+    public static class TemporaryFloatFix
     {
         public static float StringToFloat(string s)
         {
@@ -16,7 +16,7 @@ namespace Illumate.Tools
         public static string FloatToString(float f)
         {
             throw new System.NotImplementedException();
-            //int beforeDot = Mathf.CeilToInt(f);
+            //int beforeDot = Mathf.CeilToInt(f);   
             //string afterDotStr = (f - beforeDot).ToString();
             //afterDotStr = afterDotStr.Replace(',', '.');
             //var afterDotSplit = afterDotStr.Split('.');
