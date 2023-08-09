@@ -1,7 +1,6 @@
 using System;
-using System.Collections.Generic;
 
-public static class MyExtensions
+public static class IllumateCustomExtensions
 {
     /// <summary>
     /// Remap number from range to a range
@@ -51,77 +50,13 @@ public static class MyExtensions
 
         return string.Empty;
     }
-
-
-    // TODO: make enumerable
+    
 
     /// <summary>
-    /// Get nearest to position
-    /// </summary>
-    /// <typeparam name="TResult"></typeparam>
-    /// <param name="list"></param>
-    /// <param name="position"></param>
-    /// <param name="selector"></param>
-    /// <returns></returns>
-    public static TResult GetNearest<TResult>(this TResult[] list, UnityEngine.Vector3 position, Func<TResult, UnityEngine.Vector3> selector) where TResult : class
-    {
-        TResult nearest = null;
-        float nearestDistSqr = float.MaxValue;
-        for (int i = 0; i < list.Length; i++)
-        {
-            float distSqr = UnityEngine.Vector3.SqrMagnitude(selector.Invoke(list[i]) - position);
-            if (distSqr < nearestDistSqr)
-            {
-                nearest = list[i];
-                nearestDistSqr = distSqr;
-            }
-        }
-        return nearest;
-    }
-
-    /// <summary>
-    /// Get nearest one to a point.
-    /// </summary>
-    /// <typeparam name="TResult"></typeparam>
-    /// <param name="list"></param>
-    /// <param name="position">Position of point Ex. GetPos()</param>
-    /// <param name="selector">Selector function of other elements Ex. (agent) => agent.GetPos()</param>
-    /// <param name="condition">Include only if condition is true Ex. (agent) => agent.isHostile()</param>
-    /// <returns></returns>
-    public static TResult GetNearest<TResult>(this List<TResult> list, UnityEngine.Vector3 position, Func<TResult, UnityEngine.Vector3> selector, Func<TResult, bool> condition = null) where TResult : class
-    {
-        TResult nearest = null;
-        float nearestDistSqr = float.MaxValue;
-        for (int i = 0; i < list.Count; i++)
-        {
-            if (list[i] == null || list[i].Equals(null))
-                continue;
-
-            if (condition != null && !condition.Invoke(list[i]))
-                continue;
-
-            float distSqr = UnityEngine.Vector3.SqrMagnitude(selector.Invoke(list[i]) - position);
-            if (distSqr < nearestDistSqr)
-            {
-                nearest = list[i];
-                nearestDistSqr = distSqr;
-            }
-        }
-        return nearest;
-    }
-
-
-    /// <summary>
-    /// Resize and add element to end of the array
+    /// If not null or fake null. It exists
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    /// <param name="array"></param>
-    /// <param name="value"></param>
+    /// <param name="item"></param>
     /// <returns></returns>
-    //public static T[] Add<T>(this T[] array, T value)
-    //{
-    //    Array.Resize(ref array, array.Length + 1);
-    //    array[array.Length - 1] = value;
-    //    return array;
-    //}
+    public static bool IsExists<T>(this T item) => item != null && !item.Equals(null);
 }
