@@ -92,7 +92,9 @@ namespace Illumate.Tools
     /// </summary>
     public static class SpecialStartKeys
     {
+        public const string SCENELOADED = "OnSceneLoaded";
         public const string CONNECT = "OnConnect";
         public const string GAMESTART = "OnGameStart";
+        public const string GAMEEND = "OnGameEnd";
     }
 }
