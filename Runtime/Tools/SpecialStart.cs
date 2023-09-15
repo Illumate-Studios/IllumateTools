@@ -6,6 +6,7 @@ namespace Illumate.Tools
 {
     /// <summary>
     /// For creating special start codes like OnConnect, OnGameStart
+    /// DEBUG: So problematic, don't use it. Also HoleIO uses, think twice while deleting it
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class SpecialStart

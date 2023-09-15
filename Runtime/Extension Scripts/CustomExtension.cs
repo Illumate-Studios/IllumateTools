@@ -50,7 +50,11 @@ public static class IllumateCustomExtensions
 
         return string.Empty;
     }
-    
+
+    public static bool IsNullOrEmpty(this string value)
+    {
+        return value == null || value.Length == 0;
+    }
 
     /// <summary>
     /// If not null or fake null. It exists

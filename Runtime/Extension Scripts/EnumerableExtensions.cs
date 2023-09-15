@@ -40,6 +40,31 @@ public static class EnumerableExtensions
         }
     }
 
+    /// <summary>
+    /// Create list from collection until stopValue
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="source"></param>
+    /// <param name="stopValue"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentNullException"></exception>
+    public static List<T> ToListUntil<T>(this IEnumerable<T> source, T stopValue)
+    {
+        if (source == null)
+            throw new ArgumentNullException(nameof(source));
+
+        List<T> result = new();
+
+        foreach (var item in source)
+        {
+            if (EqualityComparer<T>.Default.Equals(item, stopValue))
+                break;
+            result.Add(item);
+        }
+
+        return result;
+    }
+
 
     /// <summary>
     /// Get nearest one to a point.
