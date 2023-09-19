@@ -36,7 +36,7 @@ public static class StringExtensions
 
 internal static class ColorUtility
 {
-    public static string ToHtmlStringRGB(Color color) => ToHtmlStringRGB(color);
+    public static string ToHtmlStringRGB(Color color) => ToHtmlStringRGB((Color32)color);
 
     public static string ToHtmlStringRGB(Color32 color)
     {
