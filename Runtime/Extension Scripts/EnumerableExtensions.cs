@@ -65,6 +65,43 @@ public static class EnumerableExtensions
         return result;
     }
 
+    /// <summary>
+    /// Get sub array
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="array"></param>
+    /// <param name="startIndex"></param>
+    /// <param name="length"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentNullException"></exception>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
+    public static IEnumerable<T> SubArray<T>(this IEnumerable<T> array, int startIndex, int length)
+    {
+        if (array == null)
+            throw new ArgumentNullException("array");
+
+        int num = array.Count();
+        if (num == 0)
+        {
+            if (startIndex != 0)
+                throw new ArgumentOutOfRangeException("startIndex");
+            if (length != 0)
+                throw new ArgumentOutOfRangeException("length");
+            yield break;
+        }
+
+        if (startIndex < 0 || startIndex >= num)
+            throw new ArgumentOutOfRangeException("startIndex");
+        if (length < 0 || length > num - startIndex)
+            throw new ArgumentOutOfRangeException("length");
+
+        for (int i = startIndex; i < length; i++)
+        {
+            yield return array.ElementAt(i);
+        }
+    }
+
+
 
     /// <summary>
     /// Get nearest one to a point.
