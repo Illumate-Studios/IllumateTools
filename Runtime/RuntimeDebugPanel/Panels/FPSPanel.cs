@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections;
 
 namespace Illumate.RuntimeDebugPanel
 {
@@ -14,10 +15,11 @@ namespace Illumate.RuntimeDebugPanel
         [SerializeField] private Button targetFrame60Button;
         [SerializeField] private Button targetFrame30Button;
 
+        private float FPS => 1.0f / Time.deltaTime;
         private bool smoothView = false;
         private float fps;
 
-        private void OnEnable()
+        private void Start()
         {
             smoothToggleButton.onClick.AddListener(SmoothViewToggle);
             targetFrameInfButton.onClick.AddListener(() => { SetFrame(999); });
@@ -27,21 +29,27 @@ namespace Illumate.RuntimeDebugPanel
 
         private void Update()
         {
-            if (smoothView)
-            {
-                fps = smoothView ? Mathf.Lerp(fps, 1.0f / Time.deltaTime, Time.deltaTime * 20) : 1.0f/Time.deltaTime;
-            }
+            fps = smoothView ? Mathf.Lerp(fps, FPS, Time.deltaTime) : FPS;
             fpsText.text = "FPS: " + fps.ToString("F1");
         }
 
         private void SetFrame(int frame)
         {
             Application.targetFrameRate = frame;
+            StartCoroutine(DirectUpdateFps());
         }
+
         private void SmoothViewToggle()
         {
             smoothView = !smoothView;
             smoothToggleText.text = smoothView ? "-" : "~";
+            StartCoroutine(DirectUpdateFps());
+        }
+
+        private IEnumerator DirectUpdateFps()
+        {
+            yield return null;
+            fps = FPS;
         }
     }
 }

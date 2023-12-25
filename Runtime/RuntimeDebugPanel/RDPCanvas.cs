@@ -18,6 +18,7 @@ namespace Illumate.RuntimeDebugPanel
             {
                 Instantiate(panel, listTransform);
             }
+            mainPanel.SetActive(false);
         }
 
 
@@ -34,7 +35,7 @@ namespace Illumate.RuntimeDebugPanel
 
         private void TogglePerformed(InputAction.CallbackContext obj)
         {
-            mainPanel.SetActive(mainPanel.activeSelf);
+            mainPanel.SetActive(!mainPanel.activeSelf);
         }
     }
 }

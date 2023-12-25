@@ -39,13 +39,13 @@ namespace Illumate.RuntimeDebugPanel
         private void OnSent(string inputText)
         {
             string[] splitText = inputText.Trim().Split(' ');
-            string command = splitText[0];
+            string command = splitText[0].ToLower();
             string[] parameters = (splitText.Length > 1) ? splitText.Skip(1).ToArray() : new string[0];
             string outText = "Command couldn't be found!";
 
             foreach (var commandLine in commandLines)
             {
-                if(commandLine.Command == command)
+                if(commandLine.Command.ToLower() == command)
                 {
                     outText = commandLine.Execute(parameters); 
                     break;
