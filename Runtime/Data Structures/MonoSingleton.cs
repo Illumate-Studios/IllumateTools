@@ -19,7 +19,7 @@ namespace UnityEngine
             }
         }
 
-        private void OnDestroy()
+        protected virtual void OnDestroy()
         {
             if (_instance == this)
                 _instance = null;
@@ -43,7 +43,7 @@ namespace UnityEngine
 
                 if (_instance == null)
                 {
-                    GameObject go = new GameObject(typeof(T).Name + " Singleton");
+                    GameObject go = new(typeof(T).Name + " Singleton");
                     _instance = go.AddComponent<T>();
                 }
 
@@ -51,7 +51,7 @@ namespace UnityEngine
             }
         }
 
-        private void OnDestroy()
+        protected virtual void OnDestroy()
         {
             if (_instance == this)
                 _instance = null;
