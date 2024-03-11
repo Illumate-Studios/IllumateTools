@@ -1,5 +1,7 @@
+
 namespace Illumate.Editor
 {
+    
     using System;
     using System.Collections.Generic;
     using System.IO;
@@ -21,12 +23,20 @@ namespace Illumate.Editor
 
         static ToolbarUtilities()
         {
+            if(CheckNamespaceExist("Quantum")){
+                active = false;
+                return;
+            }
+
             EditorApplication.delayCall += () =>
             {
                 EditorApplication.update -= Update;
                 EditorApplication.update += Update;
             };
         }
+
+        private static bool CheckNamespaceExist(string name)
+            => AppDomain.CurrentDomain.GetAssemblies().Any(assembly => assembly.GetTypes().Any(type => type.Namespace == name));
 
         private static void Update()
         {
